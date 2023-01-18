@@ -1,0 +1,7 @@
+server:
+  port : 8091
+
+offers:
+  client:
+    url: http://localhost:8080/
+
