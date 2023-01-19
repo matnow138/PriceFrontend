@@ -3,7 +3,7 @@ backend: https://github.com/matnow138/PriceComparisonBackend/
 Frontend: https://github.com/matnow138/PriceFrontend/
 EurekaCloud: https://github.com/matnow138/EurekaCloud/
 EurekaServer: https://github.com/matnow138/EurekaServer/
-Gateway: https://github.com/matnow138/EurekaServer/
+Gateway: https://github.com/matnow138/Gateway
 
 Uruchamianie:
 
