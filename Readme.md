@@ -1,29 +1,72 @@
-Repozytorium:
-backend: https://github.com/matnow138/PriceComparisonBackend/
-Frontend: https://github.com/matnow138/PriceFrontend/
-EurekaCloud: https://github.com/matnow138/EurekaCloud/
-EurekaServer: https://github.com/matnow138/EurekaServer/
-Gateway: https://github.com/matnow138/Gateway
+# Vaadin Gradle Skeleton Starter Spring Boot
 
-Uruchamianie:
+This project demos the possibility of having Vaadin project in npm+webpack mode using Gradle.
+Please see the [Starting a Vaadin project using Gradle](https://vaadin.com/docs/latest/guide/start/gradle) for the documentation.
 
-1. EurekaCloud
-2. EurekaServer
-3. Gateway
-4. Backend
-5. Frontend
 
-Uwagi:
+Prerequisites:
+* Java 8 or higher
+* node.js and npm. Vaadin Gradle plugin will install those for you
+  automatically (handy for CI), or you can install it to your OS:
+  * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
+  * Linux: `sudo apt install npm`
+* Git
+* (Optionally): Intellij Community
 
-Backend ma schema.sql i data.sql ustawione na uruchamianie za każdym uruchomieniem programu - może to wyrzucać błędy jeśli program będzie odpalany ponownie.
-Należy wtedy usunąć tabele w bazie. ewentualnie usunąć tylko tabelę currency.
+## Vaadin Versions
 
-Opis programu:
+* The [v14](https://github.com/vaadin/base-starter-spring-gradle) branch (the default one)
+  contains the example app for Vaadin 14
+* The [master](https://github.com/vaadin/base-starter-spring-gradle/tree/master) branch
+  contains the example app for Vaadin 19
 
-Program służy do obserowania wybranych ofert na stronie www.amazon.com, powiadamiania użytkownika o zmianie ceny i osiągnięciu ceny maksymalnej, którą ustawia użytkownik.
-W trakcie wykrycia obniżki ceny produktu, zostaje wywołana metoda weryfikująca, czy cena po przeliczeniu z USD na PLN jest poniżej ceny maksymalnej.
-Weryfikacja obniżki ceny produktu następuje raz na godzinę.
-Kurs jest pobierany w trakcie sprawdzania ceny produktu - na bieżąco ze strony NBP.
-Jeśli cena będzie poniżej maksymalnej - użytkownik otrzyma powiadomienie na maila podanego przy tworzeniu użytkownika.
+## Running With Spring Boot via Gradle In Development Mode
 
-Produkt ze strony www.amazon.com rejestruje się poprzez podanie ASIN. np: https://www.amazon.com/dp/B005YQZ1KE/ ASIN: B005YQZ1KE
+Run the following command in this repo:
+
+```bash
+./gradlew clean bootRun
+```
+
+Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+
+## Running With Spring Boot from your IDE In Development Mode
+
+Run the following command in this repo, to create necessary Vaadin config files:
+
+```bash
+./gradlew clean vaadinPrepareFrontend
+```
+
+The `build/vaadin-generated/` folder will now contain proper configuration files.
+
+Open the `DemoApplication` class, and Run/Debug its main method from your IDE.
+
+Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+
+## Building In Production Mode
+
+Run the following command in this repo:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode
+```
+
+That will build this app in production mode as a runnable jar archive; please find the jar file in `build/libs/base-starter-spring-gradle*.jar`.
+You can run the JAR file with:
+
+```bash
+cd build/libs/
+java -jar base-starter-spring-gradle*.jar
+```
+
+Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+
+### Building In Production On CI
+
+Usually the CI images will not have node.js+npm available. However, Vaadin Gradle Plugin will download it for you automatically, there is no need for you to do anything.
+To build your app for production in CI, just run:
+
+```bash
+./gradlew clean build -Pvaadin.productionMode
+```
