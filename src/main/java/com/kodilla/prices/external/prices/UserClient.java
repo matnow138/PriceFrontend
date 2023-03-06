@@ -68,6 +68,6 @@ public class UserClient {
     }
 
     private UriComponentsBuilder baseUrl(){
-        return UriComponentsBuilder.fromHttpUrl(userUrl).path("/api/v1/users");
+        return UriComponentsBuilder.fromHttpUrl(userUrl).path("v1/users");
     }
 }

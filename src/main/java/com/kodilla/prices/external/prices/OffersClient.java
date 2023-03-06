@@ -126,6 +126,6 @@ public class OffersClient {
     }
 
     private UriComponentsBuilder baseUrl() {
-        return UriComponentsBuilder.fromHttpUrl(offersUrl).path("api/v1/amazon");
+        return UriComponentsBuilder.fromHttpUrl(offersUrl).path("v1/amazon");
     }
 }
